@@ -1,9 +1,10 @@
  import React from 'react';
  import{
-  BrowseRouter as Router,
+  BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
+  BrowserRouter,
  } from 'react-router-dom';
 import Login from './pages/Auth/Login';
 import Signup from './pages/Auth/Signup';
@@ -13,7 +14,7 @@ import Expense from './pages/Dashboard/Expense';
  const App = () => {
    return (
      <div>
-        <Route>
+        <BrowserRouter basename='/'>
           <Routes>
             <Route path="/" element={<Root/>} />
             <Route path="/login" exact element={<Login/>} />
@@ -22,7 +23,7 @@ import Expense from './pages/Dashboard/Expense';
             <Route path="/income" exact element={<Income/>} />
             <Route path="/expense" exact element={<Expense/>} />
           </Routes>
-        </Route>
+        </BrowserRouter>
      </div>
    )
  }
