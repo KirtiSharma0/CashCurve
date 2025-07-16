@@ -1,10 +1,55 @@
-import React from 'react'
+import React , {useState} from 'react'
+import AuthLayout from '../../components/AuthLayout';
+import {Link, useNavigate} from 'react-router-dom';
+import Input from '../../components/Input';
+//validatehelper import
 
 const Signup = () => {
+  const [profilePic , setProfilePic] = useState("null");
+  const [fullname , setFullname] = useState("");
+  const [email , setEmail] = useState("");
+  const [password , setPassword] = useState("");
+
+  const [error,setError] = useState("null");
+  const navigate = useNavigate();
+
+  //signup form submission
+  const handleSignup = async (e) =>{}
   return (
-    <div>
-      
-    </div>
+    <AuthLayout>
+      <div className='lg:w-[100%] h-auto md:h-full mt-10 md:mt-0 flex flex-col justify-center'>
+        <h3 className='text-xl font-semibold text-black'>Create an Account</h3>
+        <p className='text-xs text-slate-700 mt-[5px] mb-6'>Join us today by entering your details below</p>
+
+        <form onSubmit={handleSignup}>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+          <Input
+            value = {fullname}
+            onChange={({target}) => setFullname(target.value)}
+            label="Full name"
+            placeholder="John"
+            type="text"
+          />
+          <Input
+            value = {email}
+            onChange={({target}) => setEmail(target.value)}
+            label="Email Address"
+            placeholder="John@gmail.com"
+            type="text"
+          />
+          <div className='col col-span-2'>
+          <Input
+            value = {password}
+            onChange={({target}) => setPassword(target.value)}
+            label="Full name"
+            placeholder="Min 8 Characters"
+            type="text"
+          />
+           </div> 
+          </div>
+        </form>
+      </div>
+    </AuthLayout>
   )
 }
 

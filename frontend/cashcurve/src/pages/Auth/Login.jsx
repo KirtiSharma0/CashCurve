@@ -1,13 +1,15 @@
-import React from 'react'
+import React , {useState} from 'react'
 import AuthLayout from '../../components/AuthLayout';
 import {Link, useNavigate} from 'react-router-dom';
 import Input from '../../components/Input';
+import {validateEmail} from '../../utils/helper'
 
+//validatehelper import
 const Login = () => {
 
    const [email,setEmail] = useState("");
    const [password,setPassword] = useState("");
-   const [error,setError] = usestate(null);
+   const [error,setError] = useState(null);
 
    const navigate = useNavigate();
    
@@ -22,7 +24,10 @@ const Login = () => {
       setError("Please enter correct password.")
       return;
     }
-
+    if(password.length<6){
+      setError("Please enter correct password");
+      return;
+    }
     setError(""
     //LoginAPI
     )
