@@ -2,6 +2,8 @@ import React , {useState} from 'react'
 import AuthLayout from '../../components/AuthLayout';
 import {Link, useNavigate} from 'react-router-dom';
 import Input from '../../components/Input';
+import ProfilePhotoSelector from '../../inputs/ProfilePhotoSelector';
+import { validateEmail } from '../../utils/helper';
 //validatehelper import
 
 const Signup = () => {
@@ -14,7 +16,25 @@ const Signup = () => {
   const navigate = useNavigate();
 
   //signup form submission
-  const handleSignup = async (e) =>{}
+  const handleSignup = async (e) =>{
+    e.preventDefault();
+    let profileImageUrl = "";
+    if(!fullname){
+      setError("Please enter your name");
+      return;
+    }
+    if(!validateEmail(email)){
+      setError("Please mention valid email");
+      return;
+    }
+    if(!password){
+      setError("Please enter the password");
+      return;
+    }
+    setError(""
+      //singup api call
+    )
+  }
   return (
     <AuthLayout>
       <div className='lg:w-[100%] h-auto md:h-full mt-10 md:mt-0 flex flex-col justify-center'>
@@ -22,6 +42,9 @@ const Signup = () => {
         <p className='text-xs text-slate-700 mt-[5px] mb-6'>Join us today by entering your details below</p>
 
         <form onSubmit={handleSignup}>
+
+          <ProfilePhotoSelector image={profilePic} setImage={setProfilePic}/>
+
           <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
           <Input
             value = {fullname}
@@ -47,6 +70,12 @@ const Signup = () => {
           />
            </div> 
           </div>
+
+          {error && <p className='text-red-500 text-xs pb-2.5'>{error}</p>}
+                       <button type='submit' className='btn-primary'>SIGN UP</button>
+                       <p className='text-[13px] text-slate-800 mt-3'>Already have an Account?{" "}
+                       <Link className='font-medium text-primary underline' to="/login">Login</Link>
+                       </p>
         </form>
       </div>
     </AuthLayout>
