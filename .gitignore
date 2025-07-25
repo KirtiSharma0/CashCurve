@@ -1,1 +1,3 @@
 node_modules
+
+//This is an expense tracker app using MERN , which includes user authentication with JWT, monthly income and expenses tracking features with interactive charts and the ability to export data in Excel format.
